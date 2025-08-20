@@ -22,6 +22,7 @@ namespace MBT
                     //after them over investigating noises
                     position.Value = detectionSystem.ClosestTarget.LastKnownPosition;
                     targetAwareness.Value = detectionSystem.ClosestTarget.Awareness;
+                    detectionSystem.transform.LookAt(position.Value);
                     return;
                 }
                 //reset target awareness if we do not have a target
@@ -29,6 +30,7 @@ namespace MBT
                 if (hasSound.Value)
                 {
                     position.Value = ((SoundData)detectionSystem.ClosestSound).Position;
+                    detectionSystem.transform.LookAt(position.Value);
                 }
                 return;
             }

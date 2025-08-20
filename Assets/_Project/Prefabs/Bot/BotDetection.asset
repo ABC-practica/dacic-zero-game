@@ -18,7 +18,7 @@ MonoBehaviour:
   <AwarenessLossRate>k__BackingField: 0.03
   <TimeToForgetSound>k__BackingField: 10
   <AudioRange>k__BackingField: 20
-  <VisualRange>k__BackingField: 40
+  <VisualRange>k__BackingField: 50
   <VisualAngle>k__BackingField: 90
   <ObstructionMask>k__BackingField:
     serializedVersion: 2
