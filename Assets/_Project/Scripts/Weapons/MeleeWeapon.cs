@@ -34,10 +34,5 @@ namespace Weapons
         {
             Gizmos.DrawWireSphere(transform.position + dist * transform.forward, radius);
         }
-
-        protected override void HandleNotFiring()
-        {
-
-        }
     }
 }

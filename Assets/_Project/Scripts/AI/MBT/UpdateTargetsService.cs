@@ -12,6 +12,7 @@ namespace MBT
         [SerializeField] protected BoolReference hasPosition;
         [SerializeField] protected FloatReference targetAwareness;
         [SerializeField] protected TacticalBrain tacticalBrain;
+        [SerializeField] protected bool lookAtTarget = true, lookAtSound = true;
         public override void Task()
         {
             if (detectionSystem)
@@ -23,7 +24,6 @@ namespace MBT
                     position.Value = detectionSystem.ClosestTarget.LastKnownPosition;
                     targetAwareness.Value = detectionSystem.ClosestTarget.Awareness;
                     hasPosition.Value = true;
-                    detectionSystem.transform.LookAt(position.Value);
                     return;
                 }
                 //reset target awareness if we do not have a target
@@ -37,7 +37,7 @@ namespace MBT
                 if (detectionSystem.ClosestSound != null)
                 {
                     position.Value = detectionSystem.ClosestSound.Value.Position;
-                    detectionSystem.transform.LookAt(position.Value);
+                    detectionSystem.Eye.LookAt(position.Value);
                     hasPosition.Value = true;
                     return;
                 }

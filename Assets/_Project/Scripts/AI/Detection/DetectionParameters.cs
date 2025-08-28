@@ -45,8 +45,10 @@ namespace Detection
         /// </summary>
         [field: SerializeField] public LayerMask ObstructionMask { get; protected set; } = 1 << 0;
         /// <summary>
-        /// What is the range on proximity detection?
+        /// What is the radius on proximity detection?
         /// </summary>
         [field: SerializeField] public float ProximityRange { get; protected set; }
+        [field: SerializeField] public bool LookAtTarget { get; protected set; } = true;
+        [field: SerializeField] public bool LookAtSound { get; protected set; } = true;
     }
 }

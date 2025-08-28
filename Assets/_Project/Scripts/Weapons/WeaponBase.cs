@@ -26,7 +26,7 @@ namespace Weapons
         {
             Firing = false;
         }
-        protected abstract void HandleNotFiring();
+        protected virtual void HandleNotFiring() { }
         protected abstract void Fire();
     }
 }

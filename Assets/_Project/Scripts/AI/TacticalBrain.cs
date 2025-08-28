@@ -19,11 +19,13 @@ namespace AI
         public Transform[] PatrolPoints;
         [SerializeField] protected float alertRadius = 10, expirationTime = 20;
         [SerializeField] protected int priority = 1;
+        [SerializeField] protected Transform eye;
         #region Other fields
         protected RequestPositionEvent? @event;
         protected float remainingRequestTime;
         protected Collider[] colliders = new Collider[GlobalSettings.MaxTargets];
         #endregion
+        #region Setup
         protected void Awake()
         {
             EventBus<RequestPositionEvent>.AddActions(transform.root.GetInstanceID(), ReceivePositionRequest);
@@ -32,6 +34,7 @@ namespace AI
         {
             EventBus<RequestPositionEvent>.RemoveActions(transform.root.GetInstanceID(), ReceivePositionRequest);
         }
+        #endregion
         protected void Update()
         {
             if (@event != null)

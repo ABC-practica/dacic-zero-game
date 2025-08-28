@@ -7,7 +7,7 @@ namespace Detection
     /// <summary>
     /// Detects targets by sight or proximity, and can hear sounds.
     /// </summary>
-    public class DetectionSystem : MonoBehaviour
+    public class DetectionSystem : MonoBehaviour, IStunnable
     {
         #region Parameters
         [SerializeField] protected DetectionParameters @params;
@@ -21,17 +21,20 @@ namespace Detection
         protected float closestSoundDist;
         #endregion
         #region Other fields
+        [field: SerializeField] public Transform Eye { get; protected set; }
         //cache this for performance/convenience and debugging
         protected LayerMask targetMask;
         protected WaitForSeconds wait;
         protected Coroutine coroutine;
         protected Collider[] targetBuffer = new Collider[GlobalSettings.MaxTargets];
+        [SerializeField] protected bool stunned = false;
+        public Vector3? PosToLookAt { get; set; }
         #endregion
         #region Debugging
         private void OnDrawGizmosSelected()
         {
             #region Visual 
-            //draw visual cone and range sphere in yellow
+            //draw visual cone and radius sphere in yellow
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, @params.VisualRange);
 
@@ -48,20 +51,20 @@ namespace Detection
             Vector3 upDirection = upRotation * transform.forward;
             Vector3 downDirection = downRotation * transform.forward;
 
-            Gizmos.DrawLine(transform.position, transform.position + leftDirection * @params.VisualRange);
-            Gizmos.DrawLine(transform.position, transform.position + rightDirection * @params.VisualRange);
-            Gizmos.DrawLine(transform.position, transform.position + upDirection * @params.VisualRange);
-            Gizmos.DrawLine(transform.position, transform.position + downDirection * @params.VisualRange);
+            Gizmos.DrawLine(Eye.position, Eye.position + leftDirection * @params.VisualRange);
+            Gizmos.DrawLine(Eye.position, Eye.position + rightDirection * @params.VisualRange);
+            Gizmos.DrawLine(Eye.position, Eye.position + upDirection * @params.VisualRange);
+            Gizmos.DrawLine(Eye.position, Eye.position + downDirection * @params.VisualRange);
             #endregion
 
             #region Audible
-            //draw audio range sphere in blue
+            //draw audio radius sphere in blue
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, @params.AudioRange);
             #endregion
 
             #region Proximity
-            //draw proximity detection range sphere in red
+            //draw proximity detection radius sphere in red
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, @params.ProximityRange);
             #endregion
@@ -103,6 +106,7 @@ namespace Detection
             }
             Targets.Clear();
             Sounds.Clear();
+            stunned = false;
             coroutine = StartCoroutine(UpdateEnumerator());
         }
         protected void OnDisable()
@@ -118,12 +122,19 @@ namespace Detection
         }
         #endregion
         #region Main methods
+        protected void Update()
+        {
+            HandleEyeRotation();
+        }
         protected IEnumerator UpdateEnumerator()
         {
             while (true)
             {
                 yield return wait;
-                Detect();
+                if (!stunned)
+                {
+                    Detect();
+                }
                 ProcessInformation();
             }
         }
@@ -159,13 +170,13 @@ namespace Detection
         /// <returns>True if we can see the position.</returns>
         public bool CanSee(Vector3 pos)
         {
-            Vector3 VectorToTarget = pos - transform.position;
+            Vector3 VectorToTarget = pos - Eye.position;
             VectorToTarget.Normalize();
-            if (Vector3.Dot(VectorToTarget, transform.forward) < Mathf.Cos(Mathf.Deg2Rad * @params.VisualAngle / 2))
+            if (Vector3.Dot(VectorToTarget, Eye.forward) < Mathf.Cos(Mathf.Deg2Rad * @params.VisualAngle / 2))
             {
                 return false;
             }
-            if (Physics.Linecast(transform.position, pos, @params.ObstructionMask))
+            if (Physics.Linecast(Eye.position, pos, @params.ObstructionMask))
             {
                 return false;
             }
@@ -219,11 +230,11 @@ namespace Detection
                     targetsToRemove.Enqueue(target);
                     continue;
                 }
+                target.Awareness -= @params.AwarenessLossRate;
                 if (target.Awareness >= 0.5f)
                 {
                     target.LastKnownPosition = target.Transform.position;
                 }
-                target.Awareness -= @params.AwarenessLossRate;
                 if (ClosestTarget == null)
                 {
                     ClosestTarget = target;
@@ -274,6 +285,33 @@ namespace Detection
             }
             #endregion
         }
+        protected void HandleEyeRotation()
+        {
+            if (!stunned)
+            {
+                if (ClosestTarget != null && @params.LookAtTarget)
+                {
+                    Debug.Log("A");
+                    Eye.LookAt(ClosestTarget.LastKnownPosition);
+                }
+                else if (ClosestSound != null && @params.LookAtSound)
+                {
+                    Debug.Log("B");
+                    Eye.LookAt(ClosestSound.Value.Position);
+                }
+                else if (PosToLookAt != null)
+                {
+                    Debug.Log("C");
+                    Eye.LookAt(PosToLookAt.Value);
+                }
+                else
+                {
+                    Debug.Log("D");
+                    Eye.localRotation = Quaternion.identity;
+                }
+                Debug.Log("Z");
+            }
+        }
         /// <summary>
         /// Fires when we hear a audioClip. If the audioClip is close enough and not made 
         /// by a friend, add it to memory.
@@ -281,11 +319,20 @@ namespace Detection
         /// <param name="soundEvent">The audioClip we heard.</param>
         public void HeardSound(SoundEvent soundEvent)
         {
+            if (stunned) return;
             //this audioClip was made by a friend
             if (soundEvent.Team == gameObject.layer) return;
             //this audioClip is too far away
             if (soundEvent.Intensity + @params.AudioRange < Vector3.Distance(transform.position, soundEvent.Position)) return;
             Sounds.Add(new SoundData(soundEvent));
+        }
+        public void Stun()
+        {
+            stunned = true;
+        }
+        public void EndStun()
+        {
+            stunned = false;
         }
         #endregion
     }

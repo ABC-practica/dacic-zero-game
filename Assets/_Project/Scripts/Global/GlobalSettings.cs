@@ -15,6 +15,7 @@ public static class GlobalSettings
     /// </summary>
     public static Dictionary<int, LayerMask> TargetMasks { get; } = new() {
         {6, 1 << 7 | 1 << 0},
+        {8, 1 << 7 | 1 << 0},
         {7, 1 << 6 | 1 << 0}
     };
     /// <summary>

@@ -78,9 +78,9 @@ namespace Detection
         /// <summary>
         /// When was this target last spotted?
         /// </summary>
-        public float TimeLastSpotted;
-        public Vector3 LastKnownPosition;
-        public Transform Transform;
+        public float TimeLastSpotted { get; set; }
+        public Vector3 LastKnownPosition { get; set; }
+        public Transform Transform { get; set; }
         public TargetData(Transform tr, float awareness = 0.5f)
         {
             Transform = tr;
