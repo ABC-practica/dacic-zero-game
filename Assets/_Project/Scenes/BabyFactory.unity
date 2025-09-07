@@ -164,10 +164,16 @@ MonoBehaviour:
       Weight: 1
     <SuccessProbability>k__BackingField: 0
   skills:
-  - <Type>k__BackingField: 1
-    <Level>k__BackingField: 0
-  - <Type>k__BackingField: 0
-    <Level>k__BackingField: 0
+  - Skills:
+    - <Type>k__BackingField: 1
+      <Level>k__BackingField: 1
+    - <Type>k__BackingField: 0
+      <Level>k__BackingField: 0
+  - Skills:
+    - <Type>k__BackingField: 0
+      <Level>k__BackingField: 1
+    - <Type>k__BackingField: 1
+      <Level>k__BackingField: 0
   calculate: 1
 --- !u!4 &909195847
 Transform:

@@ -2,34 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-namespace NPC.Tasks
+namespace NPC
 {
-    public enum Skills
-    {
-        Strength,
-        Tech
-    }
-    [System.Serializable]
-    public class Skill
-    {
-        [field: SerializeField] public Skills Type { get; protected set; }
-        [field: SerializeField] public int Level { get; set; }
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            Skill other = obj as Skill;
-            if (other == null) return false;
-            return Type == other.Type || Level == other.Level;
-        }
-        public override int GetHashCode()
-        {
-            return Type.GetHashCode() ^ Level.GetHashCode();
-        }
-        public override string ToString()
-        {
-            return $"{Type.ToString()} level {Level}.";
-        }
-    }
     [System.Serializable]
     public struct Requirement
     {
@@ -60,7 +34,7 @@ namespace NPC.Tasks
         /// </summary>
         /// <param name="inputSkills">The given skills to calculate probability for.</param>
         /// <returns>The probability of success.</returns>
-        public float GetSuccessProbability(List<Skill> inputSkills)
+        public float GetSuccessProbability(IEnumerable<Skill> inputSkills)
         {
             SuccessProbability = 1;
             for (int i = 0; i < Requirements.Count; i++)
@@ -88,6 +62,35 @@ namespace NPC.Tasks
                 return true;
             }
             return false;
+        }
+        public float AssignCharacters(List<Character> characters)
+        {
+            HashSet<Skill> inputSkills = new();
+            for (int i = 0; i < characters.Count; i++)
+            {
+                for (int j = 0; j < characters[i].Skills.Count; j++)
+                {
+                    var s = characters[i].Skills[j];
+                    if (!inputSkills.Contains(s))
+                    {
+                        inputSkills.Add(s);
+                        continue;
+                    }
+                    if (inputSkills.TryGetValue(s, out var skill))
+                    {
+                        if (skill.Level < s.Level)
+                        {
+                            inputSkills.Remove(skill);
+                            inputSkills.Add(s);
+                        }
+                    }
+                }
+            }
+            foreach (var s in inputSkills)
+            {
+                Debug.Log(s);
+            }
+            return GetSuccessProbability(inputSkills);
         }
     }
 }
