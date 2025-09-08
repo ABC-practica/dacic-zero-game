@@ -25,7 +25,7 @@ namespace NPC
         }
         public override string ToString()
         {
-            return $"{Type.ToString()} level {Level}.";
+            return $"Level {Level} {Type.ToString()}.";
         }
     }
 }

@@ -63,6 +63,14 @@ namespace NPC
             }
             return false;
         }
+        /// <summary>
+        /// Calculate probability of success based on a bunch of assigned 
+        /// characters. For each skill type it will take the highest level
+        /// skill available, and calls GetSuccessProbability with the 
+        /// resulting list of skills.
+        /// </summary>
+        /// <param name="characters">Input characters.</param>
+        /// <returns>Success probability.</returns>
         public float AssignCharacters(List<Character> characters)
         {
             HashSet<Skill> inputSkills = new();
