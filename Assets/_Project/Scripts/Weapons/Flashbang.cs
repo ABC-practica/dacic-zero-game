@@ -1,14 +1,13 @@
 using Detection;
 using EventBus;
-using KBCore.Refs;
 using System.Collections.Generic;
 using UnityEngine;
 namespace Weapons
 {
-    public class Flashbang : ValidatedMonoBehaviour
+    public class Flashbang : MonoBehaviour
     {
         [SerializeField] float velocity, radius, stunDuration;
-        [SerializeField, Self] Rigidbody rb;
+        [SerializeField] Rigidbody rb;
         Transform owner;
         LayerMask targetMask;
         [SerializeField] protected LayerMask obstructionMask = 1 << 0;
@@ -29,6 +28,7 @@ namespace Weapons
         }
         private void Awake()
         {
+            rb = GetComponent<Rigidbody>();
             stunEvent = new StunEvent(stunDuration);
             soundEvent = new SoundEvent(radius * stunDuration * 5, transform.position, owner.gameObject.layer);
         }
