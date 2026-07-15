@@ -40,7 +40,7 @@ namespace PlayerController
         private void Update()
         {
             //ground and slope check
-            GroundCheck();
+            //GroundCheck();   why is this in not in fixedupdate
         }
         void GroundCheck()
         {
@@ -61,10 +61,11 @@ namespace PlayerController
         }
         private void FixedUpdate()
         {
+            GroundCheck();
             if (!Grounded)
             {
                 //apply gravity
-                rb.linearVelocity -= transform.up * GlobalPlayerConfig.Gravity * Time.fixedTime;
+                rb.linearVelocity -= transform.up * GlobalPlayerConfig.Gravity * Time.fixedDeltaTime;
             }
             Vector3 dir = (transform.forward * inputVector.y + transform.right * inputVector.x).normalized * GlobalPlayerConfig.PlayerSpeed;
             if (onSlope)

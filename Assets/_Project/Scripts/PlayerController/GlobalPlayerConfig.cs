@@ -11,11 +11,11 @@ public static class GlobalPlayerConfig
     /// <summary>
     /// How much force to apply when jumping.
     /// </summary>
-    public static float JumpForce { get; set; } = 12;
+    public static float JumpForce { get; set; } = 7f;
     /// <summary>
     /// How much gravity to apply downwards when not grounded.
     /// </summary>
-    public static float Gravity { get; set; } = .35f;
+    public static float Gravity { get; set; } = 20f;
     /// <summary>
     /// At what distance can the player interact with an interactable.
     /// </summary>
