@@ -9,7 +9,8 @@ namespace Surface
         Water,
         Concrete,
         Grass,
-        Metal
+        Metal,
+        Stone
     }
 
     /*
