@@ -647,6 +647,8 @@ MonoBehaviour:
     AssociatedAudio: {fileID: 8300000, guid: 9eaba6b9f3818594a9cd2ab352d61a7d, type: 3}
   - Surface: 6
     AssociatedAudio: {fileID: 8300000, guid: 9eaba6b9f3818594a9cd2ab352d61a7d, type: 3}
+  - Surface: 1
+    AssociatedAudio: {fileID: 8300000, guid: a408b418fe88a0f4fa1af902eb2c9d73, type: 3}
   baseFootstepPitch: 1
   baseMovementSpeed: 7
   minimumMovementSpeed: 0.1
