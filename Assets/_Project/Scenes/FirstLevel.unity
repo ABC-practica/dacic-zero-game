@@ -5910,7 +5910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 665142174315176259, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 855438752948622435, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6370,6 +6370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944478607}
   - component: {fileID: 1944478606}
+  - component: {fileID: 1944478608}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6405,6 +6406,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944478608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944478605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6dda8245513ba498d4f8582a0f9300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckPointManager
+  Player: {fileID: 0}
+  savedPosition: {x: 0, y: 0, z: 0}
+  savedAngle: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1954688554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6947,13 +6963,13 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1944478607}
   - {fileID: 141556907}
   - {fileID: 1647796871}
   - {fileID: 1850932179}
   - {fileID: 1906178298}
   - {fileID: 1016131033}
   - {fileID: 663935936}
-  - {fileID: 1944478607}
   - {fileID: 1401086443}
   - {fileID: 1958916493}
   - {fileID: 662098798}
