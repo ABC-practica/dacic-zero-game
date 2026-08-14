@@ -35,6 +35,8 @@ public class PlayerMovementSfxPlayer : MonoBehaviour
 
     private void PlayCrouchSound(bool isHeld)
     {
+        if (!isHeld)
+            return;
         float randomPitch = crouchPitch + Random.Range(-pitchVariation, pitchVariation);
         PlaySound(crouchSfx, randomPitch);
     }
