@@ -767,7 +767,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: be09657888a79554f8b2e7a8931f0bba, type: 2}
   jumpSfx: {fileID: 8300000, guid: 6d861b00c7480bc468771596a7b8b6b5, type: 3}
   jumpPitch: 1
-  crouchSfx: {fileID: 0}
+  crouchSfx: {fileID: 8300000, guid: 755cc72cf9bd717459cc0c4ed8e24e96, type: 3}
   crouchPitch: 1
   pitchVariation: 0.1
   audioSource: {fileID: 1274700296662030093}
