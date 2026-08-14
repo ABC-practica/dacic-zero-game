@@ -9,8 +9,13 @@ public class DitherEffect : MonoBehaviour
     [SerializeField] private Color darkColor = Color.black;
     [SerializeField] private Color lightColor = Color.white;
     [SerializeField] private float noiseScale = 4f;
+    [SerializeField][Range(0.001f, 0.2f)] private float softness = 0.03f;
 
-    [Header("Optional low-res downsample")]
+    [Header("Supersampling (render bigger, then downsample)")]
+    [SerializeField] private bool useSupersampling = false;
+    [SerializeField][Range(1f, 4f)] private float supersampleFactor = 2f;
+
+    [Header("Optional low-res downsample (chunkier look)")]
     [SerializeField] private bool useLowRes = false;
     [SerializeField][Range(0.1f, 1f)] private float resolutionScale = 0.5f;
 
@@ -48,8 +53,26 @@ public class DitherEffect : MonoBehaviour
         ditherMaterial.SetColor("_DarkColor", darkColor);
         ditherMaterial.SetColor("_LightColor", lightColor);
         ditherMaterial.SetFloat("_NoiseScale", noiseScale);
+        ditherMaterial.SetFloat("_Softness", softness);
 
-        if (useLowRes)
+        // Supersampling and low-res downsample are mutually exclusive —
+        // supersampling makes dots finer, low-res makes them chunkier.
+        if (useSupersampling)
+        {
+            int highW = Mathf.RoundToInt(src.width * supersampleFactor);
+            int highH = Mathf.RoundToInt(src.height * supersampleFactor);
+
+            RenderTexture high = RenderTexture.GetTemporary(highW, highH, 0, src.format);
+            high.filterMode = FilterMode.Bilinear;
+
+            // Upscale the source into the high-res buffer, dither at that resolution,
+            // then let the final Blit to dst downsample it back to screen size.
+            Graphics.Blit(src, high, ditherMaterial);
+            Graphics.Blit(high, dst);
+
+            RenderTexture.ReleaseTemporary(high);
+        }
+        else if (useLowRes)
         {
             int lowW = Mathf.Max(1, Mathf.RoundToInt(src.width * resolutionScale));
             int lowH = Mathf.Max(1, Mathf.RoundToInt(src.height * resolutionScale));
