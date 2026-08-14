@@ -1,4 +1,5 @@
 using EventBus;
+using Newtonsoft.Json;
 using Surface;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,28 +14,23 @@ public class FootstepsSfxPlayer : MonoBehaviour
         public AudioClip AssociatedAudio;
     }
 
-    [SerializeField]
-    private List<FootstepSound> footstepSounds = new List<FootstepSound>();
+    [SerializeField] private List<FootstepSound> footstepSounds = new List<FootstepSound>();
+    [SerializeField] private float baseFootstepPitch = 1f;
+    [SerializeField] private float baseMovementSpeed = 7f;
+    [SerializeField] private float minimumMovementSpeed = 0.1f;
+    [SerializeField] private AudioSource audioSource;
 
-    [SerializeField]
-    private float baseFootstepPitch = 1f;
-
-    [SerializeField]
-    private float baseMovementSpeed = 7f;
-    
-    [SerializeField]
-    private float minimumMovementSpeed = 0.1f;
-    private AudioSource audioSource;
     private Dictionary<SurfaceType, AudioClip> soundBoard;
+    private float baseVolume;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         soundBoard = footstepSounds.ToDictionary(
             x => x.Surface,
             x => x.AssociatedAudio
             );
+        baseVolume = audioSource.volume;
     }
 
     private void OnEnable()
@@ -55,19 +51,25 @@ public class FootstepsSfxPlayer : MonoBehaviour
             audioSource.Stop();
             return;
         }
+        float volume = baseVolume;
         if (speed < 5)
+        {
             speed += 2;
-        AudioClip sound = soundBoard[moveEvent.Surface];
-        PlaySound(sound, speed / baseMovementSpeed * baseFootstepPitch);
+            volume /= 2;
+        }
+        if (!soundBoard.TryGetValue(moveEvent.Surface, out AudioClip sound))
+            return;
+        PlaySound(sound, speed / baseMovementSpeed * baseFootstepPitch, volume);
     }
 
-    private void PlaySound(AudioClip sound, float pitch)
+    private void PlaySound(AudioClip sound, float pitch, float volume)
     {
+        audioSource.volume = volume;
+        audioSource.pitch = pitch;
         if (audioSource.clip != sound || !audioSource.isPlaying)
         {
             audioSource.clip = sound;
             audioSource.Play();
         }
-        audioSource.pitch = pitch;
     }
 }
