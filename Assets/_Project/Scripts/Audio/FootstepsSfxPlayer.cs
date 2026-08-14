@@ -1,6 +1,7 @@
 using EventBus;
 using Newtonsoft.Json;
 using Surface;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,9 +20,10 @@ public class FootstepsSfxPlayer : MonoBehaviour
     [SerializeField] private float baseMovementSpeed = 7f;
     [SerializeField] private float minimumMovementSpeed = 0.1f;
     [SerializeField] private AudioSource audioSource;
-
+    [SerializeField] private float fadeOutDuration = 0.2f;
     private Dictionary<SurfaceType, AudioClip> soundBoard;
     private float baseVolume;
+    private Coroutine fadeOutCoroutine = null;
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class FootstepsSfxPlayer : MonoBehaviour
         float speed = new Vector3(moveEvent.Velocity.x, 0f, moveEvent.Velocity.z).magnitude;
         if (!moveEvent.IsGrounded || speed < minimumMovementSpeed)
         {
-            audioSource.Stop();
+            fadeOutCoroutine = StartCoroutine(FadeOutStop());
             return;
         }
         float volume = baseVolume;
@@ -62,8 +64,31 @@ public class FootstepsSfxPlayer : MonoBehaviour
         PlaySound(sound, speed / baseMovementSpeed * baseFootstepPitch, volume);
     }
 
+    private IEnumerator FadeOutStop()
+    {
+        float startVolume = audioSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < fadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / fadeOutDuration);
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = baseVolume;
+        fadeOutCoroutine = null;
+    }
+
     private void PlaySound(AudioClip sound, float pitch, float volume)
     {
+        if (fadeOutCoroutine != null)
+        {
+            StopCoroutine(fadeOutCoroutine);
+            fadeOutCoroutine = null;
+        }
+
         audioSource.volume = volume;
         audioSource.pitch = pitch;
         if (audioSource.clip != sound || !audioSource.isPlaying)
