@@ -3,7 +3,12 @@ using UnityEngine;
 
 public class CheckPoint: MonoBehaviour
 {
-    [SerializeField] CheckPointManager manager;
+    CheckPointManager manager;
+
+    private void Start()
+    {
+        manager = FindFirstObjectByType<CheckPointManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         Debug.LogWarning("ENTERED CEHKCPOINT");
