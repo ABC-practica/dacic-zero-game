@@ -52,15 +52,9 @@ public class CheckPointManager : MonoBehaviour
 
     public void loadCheckPoint()
     {
-        Time.timeScale = 1f;
         var PlayerHPComponent = Player.GetComponent<HPComponent>();
-        var PlayerCamerController = Player.GetComponent<CameraController>();
-
         PlayerHPComponent.CurrentHealth = PlayerHPComponent.MaxHealth;
         PlayerHPComponent.ForceUpdateHealth();
-
-        PlayerCamerController.cameraSpeed = CameraController.CAMERA_SPEED;
-
         Player.transform.position = savedPosition;
         Player.GetComponent<CameraController>().SetCameraRotation(savedAngle);
 
