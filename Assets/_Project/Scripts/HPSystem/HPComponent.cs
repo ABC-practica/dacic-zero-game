@@ -31,15 +31,6 @@ namespace HP {
             }
             OnDamageTaken?.Invoke(CurrentHealth);
         }
-
-        /// <summary>
-        /// Forcefully trigger a damage action
-        /// (used to reset the hud hp display on checkpoint reset)
-        /// </summary>
-        public void ForceUpdateHealth()
-        {
-            OnDamageTaken?.Invoke(CurrentHealth);
-        }
         protected void OnDestroy() {
             //clear this binding from the event bus.
             EventBus<TakeDamage>.RemoveActions(transform.GetInstanceID(), TakeDamage);

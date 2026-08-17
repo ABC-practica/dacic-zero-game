@@ -125,13 +125,9 @@ namespace PlayerController
                 {
                     bindWeaponActions(weaponNumber);
                     weapons[weaponNumber].SetModelVisible(true);
+                    OnWeaponChargeUpdated(0f);
                     SwitchedActiveWeapon.Invoke(weapons[selectedWeaponIndex]);
                 }
-                else
-                {
-                    SwitchedActiveWeapon.Invoke(null);
-                }
-                OnWeaponChargeUpdated(0f);
             }
         }
 

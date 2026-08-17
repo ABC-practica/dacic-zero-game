@@ -5317,67 +5317,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1727868541
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.34524927
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.99999976
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 16.085407
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.06230522
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9980572
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 172.856
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143370412346225662, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6833730433973635603, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 1944478608}
-    - target: {fileID: 7466085989252193135, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
-      propertyPath: m_Name
-      value: CheckPoint
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d1d311db178078249b3c6a7cef02e4a6, type: 3}
 --- !u!1 &1734565816
 GameObject:
   m_ObjectHideFlags: 0
@@ -5971,7 +5910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 665142174315176259, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: IsEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 855438752948622435, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6068,18 +6007,6 @@ PrefabInstance:
     - target: {fileID: 4835473798990928266, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: <MaxHealth>k__BackingField
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4835473798990928266, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1944478608}
-    - target: {fileID: 4835473798990928266, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadCheckPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 4835473798990928266, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
-      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CheckPointManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5778261875785697884, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_Name
@@ -6443,7 +6370,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1944478607}
   - component: {fileID: 1944478606}
-  - component: {fileID: 1944478608}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -6479,20 +6405,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1944478608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944478605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6dda8245513ba498d4f8582a0f9300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CheckPointManager
-  savedPosition: {x: 0, y: 0, z: 0}
-  savedAngle: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1954688554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7035,13 +6947,13 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1944478607}
   - {fileID: 141556907}
   - {fileID: 1647796871}
   - {fileID: 1850932179}
   - {fileID: 1906178298}
   - {fileID: 1016131033}
   - {fileID: 663935936}
+  - {fileID: 1944478607}
   - {fileID: 1401086443}
   - {fileID: 1958916493}
   - {fileID: 662098798}
@@ -7056,4 +6968,3 @@ SceneRoots:
   - {fileID: 1829603051}
   - {fileID: 1663102812}
   - {fileID: 1428484681}
-  - {fileID: 1727868541}

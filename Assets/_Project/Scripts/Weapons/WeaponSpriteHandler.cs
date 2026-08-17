@@ -32,7 +32,7 @@ public class WeaponSpriteHandler : MonoBehaviour
 
     public void updateActiveWeaponSprite(WeaponBase weapon)
     {
-        var sprite = weapon?.WeaponSprite;
+        var sprite = weapon.WeaponSprite;
         if (sprite == null)
         {
             Image.color = new Color(0, 0, 0, 0); // invis when theres no sprite, tho this shouldnt be the case in the final version.
@@ -40,10 +40,11 @@ public class WeaponSpriteHandler : MonoBehaviour
         }
         else
         {
-            Image.texture = weapon.WeaponSprite;
             Image.color = Color.white;
             ImageBackground.color = new Color(0, 0, 0, 0.5f);
         }
+
+        Image.texture = weapon.WeaponSprite;
     }
 
     public void updateChargeSlider(float charge)

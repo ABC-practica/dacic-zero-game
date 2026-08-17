@@ -1,5 +1,4 @@
-﻿using Detection;
-using PlayerController;
+﻿using PlayerController;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,19 +10,22 @@ namespace MBT
     [MBTNode("Tasks/SpotPlayer")]
     public class SpotPlayer : Leaf
     {
+        [SerializeField] BotGun gun;
+        [SerializeField] Vector3Reference targetPos;
         [SerializeField] Transform self;
         [SerializeField] ScannerBotComponent scanner;
-        [SerializeField] DetectionSystem detectionSystem;
         public override void OnEnter()
         {
             base.OnEnter();
         }
         public override NodeResult Execute()
         {
-            var target = detectionSystem.ClosestTarget.Transform;
-            var targetPos = target.position;
-            self.LookAt(new Vector3(targetPos.x, self.position.y, targetPos.z));
+            scanner.TargetPosition = targetPos.Value;
+            self.LookAt(new Vector3(targetPos.Value.x, self.position.y, targetPos.Value.z));
             scanner.AngularSpeed = 0;
+            Collider[] targetColliders = new Collider[10];
+            Physics.OverlapSphereNonAlloc(targetPos.Value, 10f, targetColliders, LayerMask.GetMask("Player"));
+            var target = targetColliders[0].transform.root;
             var stealthComponent = target.GetComponent<PlayerStealthController>();
             if (stealthComponent != null)
             {

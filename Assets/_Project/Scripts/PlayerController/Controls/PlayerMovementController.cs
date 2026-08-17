@@ -1,5 +1,3 @@
-using EventBus;
-using Surface;
 using UnityEditor;
 using UnityEngine;
 namespace PlayerController
@@ -20,7 +18,6 @@ namespace PlayerController
         bool onSlope;
         RaycastHit slopeHit;
         Vector2 inputVector;
-        private Vector3 previousVelocity = new Vector3(0, 0, 0);
         #endregion
 
         private void Awake()
@@ -59,21 +56,10 @@ namespace PlayerController
             GroundCheck();
             ApplyGravity();
             Vector3 targetVelocity = CalculateTargetVelocity();
-            if (targetVelocity != previousVelocity)
-            {
-                RaiseEntityMovedEvent(targetVelocity);
-            }
             UpdateCrouchAndSlideState();
             ApplyMovement(targetVelocity);
         }
 
-        private void RaiseEntityMovedEvent(Vector3 velocity)
-        {
-            SurfaceTypeComponent surfaceComponent = slopeHit.collider?.GetComponent<SurfaceTypeComponent>();
-            SurfaceType surface = surfaceComponent == null ? SurfaceType.Default : surfaceComponent.Type;
-            EventBus<EntityMoved>.Raise(gameObject.GetInstanceID(), new EntityMoved(surface, Grounded, velocity));
-            previousVelocity = velocity;
-        }
 
         void GroundCheck()
         {
