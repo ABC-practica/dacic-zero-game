@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 8469765849172727788}
+  selectedEditorNode: {fileID: 6378886786059122261}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -361,6 +361,7 @@ MonoBehaviour:
     constantValue: {x: 0, y: 0, z: 0}
   self: {fileID: 561832215926940277}
   scanner: {fileID: 6915068023335917343}
+  detectionSystem: {fileID: 4646713103417924419}
 --- !u!1 &2128199764013867580
 GameObject:
   m_ObjectHideFlags: 0
