@@ -30,13 +30,14 @@ namespace PlayerController
         public IEnumerator GetSpottedBy(Transform spotter)
         {
             if (!IsEnabled) yield break;
+            Time.timeScale = 0f;
             var PlayerBody = transform.root.GetComponent<Rigidbody>();
-            CameraController.cameraSpeed = 0f;
+            //CameraController.cameraSpeed = 0f;
             var dir = -spotter.forward;
             CameraController.SetCameraRotation(Quaternion.LookRotation(dir));
-            MovementController.enabled = false;
-            PlayerBody.linearVelocity = Vector3.zero;
-            yield return new WaitForSeconds(1);
+            //MovementController.enabled = false;
+            //PlayerBody.linearVelocity = Vector3.zero;
+            yield return new WaitForSecondsRealtime(1);
             EventBus<TakeDamage>.Raise(transform.root.GetInstanceID(), new TakeDamage(77777, spotter.root, PlayerCollider));
         }
     }
