@@ -9,15 +9,18 @@ public class DitherEffect : MonoBehaviour
     [SerializeField] private Color darkColor = Color.black;
     [SerializeField] private Color lightColor = Color.white;
     [SerializeField] private float noiseScale = 4f;
-    [SerializeField][Range(0.001f, 0.2f)] private float softness = 0.03f;
+    [SerializeField] [Range(0.001f, 0.2f)] private float softness = 0.03f;
+    [SerializeField] [Range(0f, 1f)] private float minLuminance = 0f;
+    [SerializeField] [Range(1f, 10f)] private float contrast = 3f;
+    [SerializeField] [Range(0f, 1f)] private float ditherAmount = 0.5f;
 
     [Header("Supersampling (render bigger, then downsample)")]
     [SerializeField] private bool useSupersampling = false;
-    [SerializeField][Range(1f, 4f)] private float supersampleFactor = 2f;
+    [SerializeField] [Range(1f, 4f)] private float supersampleFactor = 2f;
 
     [Header("Optional low-res downsample (chunkier look)")]
     [SerializeField] private bool useLowRes = false;
-    [SerializeField][Range(0.1f, 1f)] private float resolutionScale = 0.5f;
+    [SerializeField] [Range(0.1f, 1f)] private float resolutionScale = 0.5f;
 
     private Material ditherMaterial;
 
@@ -54,8 +57,11 @@ public class DitherEffect : MonoBehaviour
         ditherMaterial.SetColor("_LightColor", lightColor);
         ditherMaterial.SetFloat("_NoiseScale", noiseScale);
         ditherMaterial.SetFloat("_Softness", softness);
+        ditherMaterial.SetFloat("_MinLum", minLuminance);
+        ditherMaterial.SetFloat("_Contrast", contrast);
+        ditherMaterial.SetFloat("_DitherAmount", ditherAmount);
 
-        // Supersampling and low-res downsample are mutually exclusive —
+        // Supersampling and low-res downsample are mutually exclusive â€”
         // supersampling makes dots finer, low-res makes them chunkier.
         if (useSupersampling)
         {
