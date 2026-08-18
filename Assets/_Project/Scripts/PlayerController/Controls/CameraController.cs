@@ -14,7 +14,7 @@ namespace PlayerController {
         float currentYAngle;
 
         [Range(0f, 90f)] public float VerticalLimit = 35f;
-        public const float CAMERA_SPEED = 0.01f;
+        public const float CAMERA_SPEED = 0.1f;
         public float cameraSpeed = CAMERA_SPEED;
         public bool smoothCameraRotation;
         [Range(1f, 50f)] public float cameraSmoothingFactor = 25f;

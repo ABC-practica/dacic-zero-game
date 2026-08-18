@@ -27,6 +27,13 @@ namespace PlayerController
                 PlayerWeaponController.IsEnabled = false;
             }
         }
+
+        public void SetStealthMode(bool enabled)
+        {
+            IsEnabled = enabled;
+            MovementController.EnableFancyMovement = !enabled;
+            PlayerWeaponController.IsEnabled = !enabled;
+        }
         public IEnumerator GetSpottedBy(Transform spotter)
         {
             if (!IsEnabled) yield break;
