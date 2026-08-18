@@ -116,10 +116,13 @@ namespace PlayerController
         {
             if (!(!isEnabled && selectedWeaponIndex == -1))
             {
-                weapons[selectedWeaponIndex].Firing = false;
-                weapons[selectedWeaponIndex].AltFiring = false;
-                clearWeaponACtions(selectedWeaponIndex);
-                weapons[selectedWeaponIndex].SetModelVisible(false);
+                if (selectedWeaponIndex != -1)
+                {
+                    weapons[selectedWeaponIndex].Firing = false;
+                    weapons[selectedWeaponIndex].AltFiring = false;
+                    clearWeaponACtions(selectedWeaponIndex);
+                    weapons[selectedWeaponIndex].SetModelVisible(false);
+                }
                 selectedWeaponIndex = weaponNumber;
                 if (weaponNumber >= 0)
                 {
