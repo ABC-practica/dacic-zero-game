@@ -9312,6 +9312,90 @@ MonoBehaviour:
   supersampleFactor: 3.33
   useLowRes: 0
   resolutionScale: 1
+--- !u!1 &331770708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331770711}
+  - component: {fileID: 331770710}
+  - component: {fileID: 331770709}
+  m_Layer: 0
+  m_Name: SceneSoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &331770709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331770708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cffe9e8431ee248ac08ede69c5dcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmbianceSfxSpawner
+  ambianceSounds:
+  - {fileID: 8300000, guid: 72c581ab243665e44b0d384ab2899b85, type: 3}
+  - {fileID: 8300000, guid: 4b45d170555e3be4bad8677fc6880cc5, type: 3}
+  - {fileID: 8300000, guid: 2aab07792a3427147bdce3dee987e4a9, type: 3}
+  - {fileID: 8300000, guid: 17725371e5cb368499720e8ceb5df07b, type: 3}
+  - {fileID: 8300000, guid: e64cf975199527f438f86761b53b454b, type: 3}
+  minimumRange: 20
+  maximumRange: 40
+  maximulHeight: 10
+  mixerGroup: {fileID: -6096432758237636303, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
+  chanceToPlay: 0.2
+  baseVolume: 1.1
+  playerTransform: {fileID: 214400176}
+  playTryRate: 1
+--- !u!114 &331770710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331770708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cffe9e8431ee248ac08ede69c5dcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AmbianceSfxSpawner
+  ambianceSounds:
+  - {fileID: 8300000, guid: 268602e519a27b34bbdfcd9b632156f1, type: 3}
+  - {fileID: 8300000, guid: a9f201187598672488690ca406fed608, type: 3}
+  - {fileID: 8300000, guid: 67f0a1de135eaea4fb3ae1db63b54f4d, type: 3}
+  - {fileID: 8300000, guid: 840fa81bdb8447445949f5700a1ae364, type: 3}
+  minimumRange: 40
+  maximumRange: 60
+  maximulHeight: 10
+  mixerGroup: {fileID: -6096432758237636303, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
+  chanceToPlay: 0.2
+  baseVolume: 0.8
+  playerTransform: {fileID: 214400176}
+  playTryRate: 5
+--- !u!4 &331770711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331770708}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 558, y: 95.5, z: 230.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &332199176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10355,6 +10439,7 @@ GameObject:
   - component: {fileID: 360177379}
   - component: {fileID: 360177378}
   - component: {fileID: 360177381}
+  - component: {fileID: 360177382}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -10470,6 +10555,19 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6d4af2c8bf947bc4f87db59e8dbfca6f, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &360177382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360177377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e295a4a000a3cf42ad17c9ededa8a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Surface.SurfaceTypeComponent
+  surfaceType: 1
 --- !u!43 &361248650
 Mesh:
   m_ObjectHideFlags: 0
@@ -32714,7 +32812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: volumeInArea
-      value: 0.07
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: playerTransform
@@ -53684,3 +53782,4 @@ SceneRoots:
   - {fileID: 1264916373}
   - {fileID: 1507489685}
   - {fileID: 1293113559}
+  - {fileID: 331770711}
