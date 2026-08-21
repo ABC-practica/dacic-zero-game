@@ -9323,6 +9323,7 @@ GameObject:
   - component: {fileID: 331770711}
   - component: {fileID: 331770710}
   - component: {fileID: 331770709}
+  - component: {fileID: 331770712}
   m_Layer: 0
   m_Name: SceneSoundManager
   m_TagString: Untagged
@@ -9396,6 +9397,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331770712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331770708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802d0d5c5b5318042b81ad7d97e69e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusicPlayer
+  backgroundMusic: {fileID: 0}
+  baseMusicVolume: 1
+  fadeInTime: 2
+  fadeOutTime: 2
+  mixerGroup: {fileID: 241794453169597723, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
 --- !u!1001 &332199176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32822,7 +32840,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: volumeInArea
-      value: 0.02
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: playerTransform
@@ -37516,7 +37534,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: volumeInArea
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: playerTransform
@@ -46814,7 +46832,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: volumeInArea
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 730034714897135146, guid: eb2c26737cecf8c448886b060d0e309d, type: 3}
       propertyPath: playerTransform
