@@ -27420,100 +27420,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!1 &882859020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 882859023}
-  - component: {fileID: 882859022}
-  - component: {fileID: 882859021}
-  m_Layer: 0
-  m_Name: Terrain_(-250.00, -20.00, -750.00)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!154 &882859021
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882859020}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 7d08ab423c337444bb8056dabec9ac90, type: 2}
-  m_EnableTreeColliders: 1
---- !u!218 &882859022
-Terrain:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882859020}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 7d08ab423c337444bb8056dabec9ac90, type: 2}
-  m_TreeDistance: 5000
-  m_TreeBillboardDistance: 2000
-  m_TreeCrossFadeLength: 200
-  m_TreeMaximumFullLODCount: 0
-  m_DetailObjectDistance: 651
-  m_DetailObjectDensity: 1
-  m_HeightmapPixelError: 5
-  m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
-  m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
-  m_DrawHeightmap: 1
-  m_DrawInstanced: 0
-  m_DrawTreesAndFoliage: 1
-  m_StaticShadowCaster: 0
-  m_IgnoreQualitySettings: 0
-  m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
-  m_BakeLightProbesForTrees: 1
-  m_PreserveTreePrototypeLayers: 0
-  m_DeringLightProbesForTrees: 1
-  m_ReceiveGI: 1
-  m_ScaleInLightmap: 0.036203865
-  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
-  m_GroupingID: 0
-  m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
-  m_EnableHeightmapRayTracing: 1
-  m_EnableTreesAndDetailsRayTracing: 0
-  m_EnableHeightmapLODFrustumCulling: 1
-  m_TreeMotionVectorModeOverride: 3
---- !u!4 &882859023
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882859020}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -250, y: -20, z: -750}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &917360899
 Mesh:
   m_ObjectHideFlags: 0
@@ -34635,7 +34541,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 262765225}
+  m_Mesh: {fileID: 697377854}
 --- !u!33 &1132687855
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -35401,6 +35307,10 @@ PrefabInstance:
     - target: {fileID: 1264470313884063898, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102838470461650688, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
+      propertyPath: far clip plane
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4583501436427864276, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48085,7 +47995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089132165868292306, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: m_Name
-      value: OneTimeUseButton (2)
+      value: TargetButton3
       objectReference: {fileID: 0}
     - target: {fileID: 8583988321087691339, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -48579,7 +48489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089132165868292306, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: m_Name
-      value: OneTimeUseButton (1)
+      value: TargetButton2
       objectReference: {fileID: 0}
     - target: {fileID: 8583988321087691339, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -48870,7 +48780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089132165868292306, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: m_Name
-      value: OneTimeUseButton
+      value: TargetButton1
       objectReference: {fileID: 0}
     - target: {fileID: 8583988321087691339, guid: 37948b416a9590f4ea52c6595cf37b81, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -50070,6 +49980,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7827571254432536488, guid: a94481a284766e745ab8e216d6ce6f91, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4230cef5e36d34240987d46954f779ad, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57575,6 +57489,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3673122819569200329, guid: 4a653f0f2357bef448e3a21519eed5c7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4230cef5e36d34240987d46954f779ad, type: 3}
     - target: {fileID: 8877946593583274811, guid: 4a653f0f2357bef448e3a21519eed5c7, type: 3}
       propertyPath: m_Name
       value: PlayerStealthChanger
@@ -64746,4 +64664,3 @@ SceneRoots:
   - {fileID: 1503347017}
   - {fileID: 1935887543}
   - {fileID: 1135385106}
-  - {fileID: 882859023}
