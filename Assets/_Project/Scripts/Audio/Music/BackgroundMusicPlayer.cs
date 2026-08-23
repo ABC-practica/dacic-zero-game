@@ -21,6 +21,11 @@ public class BackgroundMusicPlayer : MonoBehaviour
         ConfigAudioSource();
     }
 
+    private void Start()
+    {
+        PlayMusic();
+    }
+
     private void ConfigAudioSource()
     {
         musicSource.volume = 0f;
