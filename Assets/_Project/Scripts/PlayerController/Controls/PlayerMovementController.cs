@@ -192,7 +192,11 @@ namespace PlayerController
             }
             else
             {
-                while(HeadCheck() && isCrouched) { yield return new WaitForFixedUpdate(); }
+                while(HeadCheck() && isCrouched)
+                { 
+                    yield return new WaitForFixedUpdate();
+                    if (isCrouching) yield break;
+                }
                 isCrouched = false;
                 capsuleCollider.height = GlobalPlayerConfig.PlayerStandingHeight;
                 camPivot.localPosition = new Vector3(camPivot.localPosition.x, GlobalPlayerConfig.PlayerCameraStandingHeight, camPivot.localPosition.z);
