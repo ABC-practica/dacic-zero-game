@@ -1,4 +1,5 @@
 ﻿using Detection;
+using EventBus;
 using HP;
 using PlayerController;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+
+public struct CheckPointLoaded : IEvent {}
 
 public class CheckPointManager : MonoBehaviour
 {
@@ -72,5 +75,7 @@ public class CheckPointManager : MonoBehaviour
             obj.transform.position = SavedPositions[obj];
             obj.SetActive(SavedStates[obj]);
         }
+
+        EventBus<CheckPointLoaded>.Raise(0, new CheckPointLoaded());
     }
 }
