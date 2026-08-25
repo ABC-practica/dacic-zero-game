@@ -1,3 +1,4 @@
+using EventBus;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,6 +16,28 @@ public class AmbianceSfxSpawner : MonoBehaviour
     [SerializeField] private float playTryRate = 1f;
     private AudioClip lastPlayed = null;
     private void Start()
+    {
+        StartAmbienceSounds();
+    }
+
+    private void OnEnable()
+    {
+        EventBus<PauseSound>.AddActions(gameObject.GetInstanceID(), actionNoArgs: StopAmbienceSounds);
+        EventBus<UnpauseSound>.AddActions(gameObject.GetInstanceID(), actionNoArgs: StartAmbienceSounds);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<PauseSound>.RemoveActions(gameObject.GetInstanceID(), actionNoArgs: StopAmbienceSounds);
+        EventBus<UnpauseSound>.RemoveActions(gameObject.GetInstanceID(), actionNoArgs: StartAmbienceSounds);
+    }
+
+    private void StopAmbienceSounds()
+    {
+        CancelInvoke("PlayRandom");
+    }
+
+    private void StartAmbienceSounds()
     {
         InvokeRepeating("PlayRandom", 0f, playTryRate);
     }
@@ -44,7 +67,7 @@ public class AmbianceSfxSpawner : MonoBehaviour
 
     private void PlaySound(Vector3 position, AudioClip sound)
     {
-        Debug.Log(sound);
+        // Debug.Log(sound);
         lastPlayed = sound;
         GameObject tempObj = new GameObject("tempAudio");
         tempObj.transform.position = position;
