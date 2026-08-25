@@ -8,7 +8,6 @@ namespace CombatSystem
     public class CombatStateManager : MonoBehaviour
     {
         private HashSet<int> idsAggroedEnemies = new();
-        private bool isPlayerInCombat = false;
         private void OnEnable()
         {
             EventBus<EnemyEnterCombat>.AddActions(0, AddEnemy);
@@ -25,35 +24,25 @@ namespace CombatSystem
 
         private void ResetCombatState()
         {
-            Debug.Log("reset combat state");
-            idsAggroedEnemies.Clear();
+            if (idsAggroedEnemies.Count > 0)
+            {
+                EventBus<PlayerExitCombat>.Raise(0, new PlayerExitCombat());
+                idsAggroedEnemies.Clear();
+            }  
         }
 
         private void AddEnemy(EnemyEnterCombat @event)
         {
-            Debug.Log("enemy enters combat");
+            if (idsAggroedEnemies.Count == 0)
+                EventBus<PlayerEnterCombat>.Raise(0, new PlayerEnterCombat());
             idsAggroedEnemies.Add(@event.EnemyInstanceId);
         }
 
         private void RemoveEnemy(EnemyExitCombat @event)
         {
-            Debug.Log("enemy exits combat");
             idsAggroedEnemies.Remove(@event.EnemyInstanceId);
-        }
-
-        private void Update()
-        {
-            if (idsAggroedEnemies.Count > 0 && !isPlayerInCombat)
-            {
-                isPlayerInCombat = true;
-                EventBus<PlayerEnterCombat>.Raise(0, new PlayerEnterCombat());
-                return;
-            }
-            if (idsAggroedEnemies.Count == 0 && isPlayerInCombat)
-            {
-                isPlayerInCombat = false;
+            if (idsAggroedEnemies.Count == 0)
                 EventBus<PlayerExitCombat>.Raise(0, new PlayerExitCombat());
-            }
         }
     }
 
