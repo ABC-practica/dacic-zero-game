@@ -1,4 +1,6 @@
 # DacicZeroGame
 Game about cyberpunk dacians.
 
-See [Workflow.md](Workflow.md) for how we take a task from Trello to a merged PR, and [CodeGuidelines.md](CodeGuidelines.md) for code style conventions. See [KnownIssues.md](KnownIssues.md) for known repo/infrastructure issues. See the `docs/` folder for design notes, story, and other documentation.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to set up the repo and how we take a task to a merged PR, and [CodeGuidelines.md](CodeGuidelines.md) for code style conventions.
+
+This repository uses [Git LFS](https://git-lfs.com/) for binary assets — install it before cloning, or your working copy will contain pointer files instead of real assets. See [CONTRIBUTING.md](CONTRIBUTING.md#git-lfs) for details.

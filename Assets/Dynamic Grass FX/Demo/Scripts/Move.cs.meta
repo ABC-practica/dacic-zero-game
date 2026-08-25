@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2f0cc8219b48abe4da1c85d9a4a10811
+timeCreated: 1556417859
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 144740
+  packageName: Dynamic Grass FX
+  packageVersion: 1.0
+  assetPath: Assets/Dynamic Grass FX/Demo/Scripts/Move.cs
+  uploadId: 308154

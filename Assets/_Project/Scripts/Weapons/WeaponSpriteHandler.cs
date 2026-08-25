@@ -8,6 +8,7 @@ public class WeaponSpriteHandler : MonoBehaviour
 {
     [SerializeField] PlayerWeaponController WeaponController;
     [SerializeField] RawImage Image;
+    [SerializeField] RawImage ImageBackground;
     [SerializeField] Slider ChargeSlider;
     [SerializeField] Image ChargeSliderFill;
 
@@ -31,11 +32,18 @@ public class WeaponSpriteHandler : MonoBehaviour
 
     public void updateActiveWeaponSprite(WeaponBase weapon)
     {
-        var sprite = weapon.WeaponSprite;
-        if (sprite == null) Image.color = new Color(0, 0, 0, 0); // invis when theres no sprite, tho this shouldnt be the case in the final version.
-        else Image.color = Color.white; // fully visible otherwise
-
-        Image.texture = weapon.WeaponSprite;
+        var sprite = weapon?.WeaponSprite;
+        if (sprite == null)
+        {
+            Image.color = new Color(0, 0, 0, 0); // invis when theres no sprite, tho this shouldnt be the case in the final version.
+            ImageBackground.color = new Color(0, 0, 0, 0);
+        }
+        else
+        {
+            Image.texture = weapon.WeaponSprite;
+            Image.color = Color.white;
+            ImageBackground.color = new Color(0, 0, 0, 0.5f);
+        }
     }
 
     public void updateChargeSlider(float charge)

@@ -1,3 +1,6 @@
+using EventBus;
+using Surface;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 namespace PlayerController
@@ -13,10 +16,13 @@ namespace PlayerController
         [SerializeField] Transform camPivot;
         [SerializeField] Camera playerCamera;
         [SerializeField] public Transform groundCheckPoint;
+        [SerializeField] public Transform headCheckPoint;
+        [SerializeField] public bool EnableFancyMovement = true;
         public bool Grounded { get; protected set; }
         bool onSlope;
         RaycastHit slopeHit;
         Vector2 inputVector;
+        private Vector3 previousVelocity = new Vector3(0, 0, 0);
         #endregion
 
         private void Awake()
@@ -55,10 +61,21 @@ namespace PlayerController
             GroundCheck();
             ApplyGravity();
             Vector3 targetVelocity = CalculateTargetVelocity();
+            if (targetVelocity != previousVelocity)
+            {
+                RaiseEntityMovedEvent(targetVelocity);
+            }
             UpdateCrouchAndSlideState();
             ApplyMovement(targetVelocity);
         }
 
+        private void RaiseEntityMovedEvent(Vector3 velocity)
+        {
+            SurfaceTypeComponent surfaceComponent = slopeHit.collider?.GetComponent<SurfaceTypeComponent>();
+            SurfaceType surface = surfaceComponent == null ? SurfaceType.Default : surfaceComponent.Type;
+            EventBus<EntityMoved>.Raise(gameObject.GetInstanceID(), new EntityMoved(surface, Grounded, velocity));
+            previousVelocity = velocity;
+        }
 
         void GroundCheck()
         {
@@ -72,6 +89,12 @@ namespace PlayerController
                 onSlope = false;
             }
         }
+
+        bool HeadCheck()
+        {
+            return Physics.CheckSphere(headCheckPoint.position, GlobalPlayerConfig.PlayerGroundCheckRadius, GlobalPlayerConfig.GroundLayerMask);
+        }
+
         void SlopeCheck()
         {
             Physics.Raycast(groundCheckPoint.position, -groundCheckPoint.up, out slopeHit, GlobalPlayerConfig.PlayerGroundCheckRadius, GlobalPlayerConfig.GroundLayerMask);
@@ -90,7 +113,7 @@ namespace PlayerController
             Vector3 dir = (transform.forward * inputVector.y + transform.right * inputVector.x).normalized;
             Vector3 target = dir * GlobalPlayerConfig.PlayerSpeed;
 
-            if (isCrouching && !isSprinting)
+            if (isCrouched && (!isSprinting || !EnableFancyMovement))
                 target *= GlobalPlayerConfig.PlayerCrouchSpeedMultiplier;
             else if (isSprinting)
                 target *= GlobalPlayerConfig.PlayerSprintSpeedMultiplier;
@@ -103,9 +126,9 @@ namespace PlayerController
 
         private void UpdateCrouchAndSlideState()
         {
-            if (!isCrouching) return;
+            if (!isCrouched) return;
 
-            if (!Grounded && !isSliding && PlayerBody.linearVelocity.y <= 0)
+            if (!Grounded && !isSliding && PlayerBody.linearVelocity.y <= 0 && EnableFancyMovement)
             {
                 // groundpound! (might not make the final cut)
                 PlayerBody.linearVelocity = new Vector3(0, GlobalPlayerConfig.GroundPoundForce, 0);
@@ -141,37 +164,51 @@ namespace PlayerController
             {
                 PlayerBody.AddForce(transform.up * GlobalPlayerConfig.JumpForce, ForceMode.Impulse);
 
-                if (isSliding)
+                if (isSliding && EnableFancyMovement)
                     PlayerBody.AddForce(transform.forward * GlobalPlayerConfig.JumpForce, ForceMode.Impulse);
             }
         }
 
 
-        bool isCrouching;
+        bool isCrouching; // refers to wether the player is actively holding down the crouch button or not
         bool isSliding;
+        bool isCrouched; // refers to wether the player's actual height is small or not
         public void OnCrouch(bool isHeld)
         {
             isCrouching = isHeld;
+            StartCoroutine(updatePlayersHeight());
+            isSliding = isCrouched && isSprinting && Grounded && EnableFancyMovement;
+            Physics.SyncTransforms();
+        }
 
-            if (isHeld)
+        IEnumerator updatePlayersHeight()
+        {
+            if (isCrouching)
             {
+                isCrouched = true;
                 capsuleCollider.height = GlobalPlayerConfig.PlayerCrouchingHeight;
                 camPivot.localPosition = new Vector3(camPivot.localPosition.x, GlobalPlayerConfig.PlayerCameraCrouchingHeight, camPivot.localPosition.z);
+                if (Grounded) PlayerBody.AddForce(transform.up * GlobalPlayerConfig.GroundPoundForce, ForceMode.Impulse);
             }
             else
             {
+                while(HeadCheck() && isCrouched)
+                { 
+                    yield return new WaitForFixedUpdate();
+                    if (isCrouching) yield break;
+                }
+                isCrouched = false;
                 capsuleCollider.height = GlobalPlayerConfig.PlayerStandingHeight;
                 camPivot.localPosition = new Vector3(camPivot.localPosition.x, GlobalPlayerConfig.PlayerCameraStandingHeight, camPivot.localPosition.z);
             }
-            isSliding = isHeld && isSprinting && Grounded;
-            Physics.SyncTransforms();
         }
+
 
         bool isSprinting;
         float targetFOV = 60;
         public void OnSprint(bool isHeld)
         {
-            if (!isCrouching) // cant start sprinting while crouched
+            if (!isCrouched) // cant start sprinting while crouched
                 isSprinting = isHeld;
         }
     }
