@@ -214,7 +214,7 @@ MonoBehaviour:
   <Firing>k__BackingField: 0
   <AltFiring>k__BackingField: 0
   <IsEnhanced>k__BackingField: 0
-  WeaponSprite: {fileID: 0}
+  WeaponSprite: {fileID: 2800000, guid: a10201500dbb640499b4c3a09f016f43, type: 3}
   cooldownTo: -1
   clip: {fileID: 7400000, guid: 6ffc3fee10117ca43b524b4439eb840b, type: 2}
   pokeClip: {fileID: 7400000, guid: 2fa1d71805bcffc42aa737f720ee571d, type: 2}
