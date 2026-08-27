@@ -28550,6 +28550,10 @@ PrefabInstance:
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CheckPointManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5495233550731241654, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
+      propertyPath: fireCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5778261875785697884, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_Name
       value: Player

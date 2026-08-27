@@ -10263,6 +10263,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.286}
+--- !u!224 &2072397633 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1436869405524135988, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
+  m_PrefabInstance: {fileID: 2122382556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2122382556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10338,6 +10343,14 @@ PrefabInstance:
     - target: {fileID: 4835473798990928266, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: <MaxHealth>k__BackingField
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495233550731241654, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
+      propertyPath: Shotcount
+      value: 
+      objectReference: {fileID: 2072397633}
+    - target: {fileID: 5767444082135826291, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5778261875785697884, guid: ef759db04ea799e43bae9391bd16fa71, type: 3}
       propertyPath: m_Name
