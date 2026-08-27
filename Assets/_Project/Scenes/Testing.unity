@@ -9427,7 +9427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3480fdc58f938847a6e4470f1193df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatMusicPlayer
-  combatTracks: []
+  combatTracks:
+  - {fileID: 8300000, guid: 39d13ed782279f1489bcd1fe37ee0089, type: 3}
   baseMusicVolume: 1
   mixerGroup: {fileID: 7683505564089883944, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
   fadeInTime: 3
