@@ -59,8 +59,6 @@ public class CombatMusicPlayer : MonoBehaviour
 
     private void PlayMusic()
     {
-        if (Time.time - exitCombatTime >= minOutsideCombatTime)
-            musicSource.clip = combatTracks[Random.Range(0, combatTracks.Count)];
 
         if (stopMusicCoroutine != null)
         {
@@ -72,7 +70,11 @@ public class CombatMusicPlayer : MonoBehaviour
         {
             StopCoroutine(fadeOutCoroutine);
             fadeOutCoroutine = null;
+            exitCombatTime = Time.time;
         }
+
+        if (Time.time - exitCombatTime >= minOutsideCombatTime)
+            musicSource.clip = combatTracks[Random.Range(0, combatTracks.Count)];
 
         if (!musicSource.isPlaying)
             musicSource.Play();
