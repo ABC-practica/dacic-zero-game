@@ -13,10 +13,6 @@ namespace DacicZero.Data.Weapons {
         [field: Tooltip("unique identifier for the weapon.")]
         [field: SerializeField] public string WeaponId { get; private set; }
 
-        [field: Tooltip("current upgrade level of the weapon.")]
-        [field: Min(1)]
-        [field: SerializeField] public int WeaponLevel { get; private set; } = 1;
-
         [field: Tooltip("display name in the inventory.")]
         [field: SerializeField] public string WeaponName { get; private set; }
 
@@ -25,8 +21,8 @@ namespace DacicZero.Data.Weapons {
         [field: SerializeField] public string WeaponDescription { get; private set; }
 
         [field: Header("Combat Stats")]
-        [field: Tooltip("base damage dealt per hit.")]
-        [field: SerializeField] public float BaseDamage { get; private set; }
+        [field: Tooltip("damage dealt per hit.")]
+        [field: SerializeField] public float Damage { get; private set; }
 
         [field: Tooltip("time in seconds between attacks.")]
         [field: SerializeField] public float FireRate { get; private set; }
