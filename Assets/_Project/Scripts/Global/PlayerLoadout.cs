@@ -39,18 +39,6 @@ namespace DacicZero.Global {
             OnLoadoutChanged?.Invoke();
         }
 
-        public static void UpgradeWeapon(WeaponDataSO oldWeapon, WeaponDataSO newWeapon) {
-            if (oldWeapon == null || newWeapon == null) return;
-
-            if (_ownedWeapons.Contains(oldWeapon)) _ownedWeapons.Remove(oldWeapon);
-            if (!_ownedWeapons.Contains(newWeapon)) _ownedWeapons.Add(newWeapon);
-
-            if (EquippedPrimary == oldWeapon) EquippedPrimary = newWeapon;
-            if (EquippedSecondary == oldWeapon) EquippedSecondary = newWeapon;
-
-            OnLoadoutChanged?.Invoke();
-        }
-
         public static void EquipWeapon(WeaponDataSO weapon) {
             if (weapon == null) return;
             bool changedState = false;
