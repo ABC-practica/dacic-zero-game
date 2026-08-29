@@ -34,7 +34,10 @@ namespace CombatSystem
         private void AddEnemy(EnemyEnterCombat @event)
         {
             if (idsAggroedEnemies.Count == 0)
+            {
                 EventBus<PlayerEnterCombat>.Raise(0, new PlayerEnterCombat());
+            }
+
             idsAggroedEnemies.Add(@event.EnemyInstanceId);
         }
 
@@ -42,7 +45,9 @@ namespace CombatSystem
         {
             idsAggroedEnemies.Remove(@event.EnemyInstanceId);
             if (idsAggroedEnemies.Count == 0)
+            {
                 EventBus<PlayerExitCombat>.Raise(0, new PlayerExitCombat());
+            }
         }
     }
 

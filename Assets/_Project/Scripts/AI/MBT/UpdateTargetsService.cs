@@ -48,12 +48,12 @@ namespace MBT {
 
                 if (!pastHasPosition && hasPosition.Value)
                 {
-                    EventBus<EnemyEnterCombat>.Raise(0, new EnemyEnterCombat(gameObject.GetInstanceID()));
+                    EventBus<EnemyEnterCombat>.Raise(0, new EnemyEnterCombat(transform.parent.gameObject.GetInstanceID()));
                     return;
                 }
                 if (pastHasPosition && !hasPosition.Value)
                 {
-                    EventBus<EnemyExitCombat>.Raise(0, new EnemyExitCombat(gameObject.GetInstanceID()));
+                    EventBus<EnemyExitCombat>.Raise(0, new EnemyExitCombat(transform.parent.gameObject.GetInstanceID()));
                     return;
                 }
             }
