@@ -9324,6 +9324,7 @@ GameObject:
   - component: {fileID: 331770710}
   - component: {fileID: 331770709}
   - component: {fileID: 331770712}
+  - component: {fileID: 331770713}
   m_Layer: 0
   m_Name: SceneSoundManager
   m_TagString: Untagged
@@ -9413,7 +9414,27 @@ MonoBehaviour:
   baseMusicVolume: 0.3
   fadeInTime: 3
   fadeOutTime: 3
-  mixerGroup: {fileID: 241794453169597723, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
+  mixerGroup: {fileID: -6179697281508874312, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
+--- !u!114 &331770713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331770708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3480fdc58f938847a6e4470f1193df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatMusicPlayer
+  combatTracks:
+  - {fileID: 8300000, guid: 39d13ed782279f1489bcd1fe37ee0089, type: 3}
+  - {fileID: 8300000, guid: ce6910a28a5010b40a3332f25ef8b92e, type: 3}
+  baseMusicVolume: 1
+  mixerGroup: {fileID: 7683505564089883944, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
+  fadeInTime: 3
+  fadeOutTime: 3
+  minimumMusicPlayTime: 5
 --- !u!1001 &332199176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40511,6 +40532,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 056bebff4dc5bc9438f305adb965f591, type: 3}
+--- !u!1 &1608156062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608156064}
+  - component: {fileID: 1608156063}
+  m_Layer: 0
+  m_Name: CombatStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1608156063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608156062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b3316ee59e9e34b88d67045791d8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatSystem.CombatStateManager
+--- !u!4 &1608156064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608156062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1609357848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54076,3 +54141,4 @@ SceneRoots:
   - {fileID: 1507489685}
   - {fileID: 331770711}
   - {fileID: 1466116149}
+  - {fileID: 1608156064}
