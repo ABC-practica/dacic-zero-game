@@ -12866,7 +12866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e295a4a000a3cf42ad17c9ededa8a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Surface.SurfaceTypeComponent
-  surfaceType: 1
+  surfaceType: 4
 --- !u!43 &361248650
 Mesh:
   m_ObjectHideFlags: 0
