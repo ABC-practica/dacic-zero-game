@@ -12370,7 +12370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusicPlayer
   backgroundMusic: {fileID: 8300000, guid: 69126088c069a954f8a18cce785641b9, type: 3}
-  baseMusicVolume: 0.5
+  baseMusicVolume: 0.3
   fadeInTime: 3
   fadeOutTime: 3
   mixerGroup: {fileID: -6179697281508874312, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
@@ -12393,7 +12393,7 @@ MonoBehaviour:
   mixerGroup: {fileID: 7683505564089883944, guid: 732489827cae0014f8eec4a1909539c7, type: 2}
   fadeInTime: 3
   fadeOutTime: 3
-  minimumMusicPlayTime: 5
+  minimumMusicPlayTime: 10
 --- !u!1001 &332199176
 PrefabInstance:
   m_ObjectHideFlags: 0
