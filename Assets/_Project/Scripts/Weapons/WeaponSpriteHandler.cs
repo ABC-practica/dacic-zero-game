@@ -12,7 +12,7 @@ public class WeaponSpriteHandler : MonoBehaviour
     [SerializeField] RawImage ImageBackground;
     [SerializeField] Slider ChargeSlider;
     [SerializeField] Image ChargeSliderFill;
-    [SerializeField] TMP_Text ArrowCount;
+    [SerializeField] private GameObject ArrowCount;
 
 
     private void Awake()
@@ -39,7 +39,7 @@ public class WeaponSpriteHandler : MonoBehaviour
         {
             Image.color = new Color(0, 0, 0, 0); // invis when theres no sprite, tho this shouldnt be the case in the final version.
             ImageBackground.color = new Color(0, 0, 0, 0);
-            if (ArrowCount != null) ArrowCount.gameObject.SetActive(false);
+            if (ArrowCount != null) ArrowCount.SetActive(false);
         }
         else if(sprite.GetType() == typeof(Bow))
         {
@@ -49,10 +49,10 @@ public class WeaponSpriteHandler : MonoBehaviour
             if (ArrowCount != null)
             {
                 // show and sync the arrow count
-                ArrowCount.gameObject.SetActive(true);
+                ArrowCount.SetActive(true);
                 var bow = weapon as Bow;
                 if (bow != null && bow.Arrows != null)
-                    ArrowCount.text = bow.Arrows.text;
+                    ArrowCount.GetComponent<TMP_Text>().text = bow.Arrows.GetComponent<TMP_Text>().text;
             }
         }
         else
@@ -60,7 +60,7 @@ public class WeaponSpriteHandler : MonoBehaviour
             Image.texture = weapon.WeaponSprite;
             Image.color = Color.white;
             ImageBackground.color = new Color(0, 0, 0, 0.5f);
-            if (ArrowCount != null) ArrowCount.gameObject.SetActive(false);
+            if (ArrowCount != null) ArrowCount.SetActive(false);
         }
     }
 
