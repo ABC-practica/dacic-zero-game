@@ -8,7 +8,7 @@ namespace DacicZero.Data.Dialog {
         [Tooltip("text displayed on the option button")]
         [SerializeField] private string _optionText;
 
-        [Tooltip("event id triggered on selection ('OpenMap', 'OpenUpgradeMenu')")]
+        [Tooltip("event id triggered on selection ('OpenMap')")]
         [SerializeField] private string _actionEventID;
 
         [Tooltip("optional parameters passed with the event")]

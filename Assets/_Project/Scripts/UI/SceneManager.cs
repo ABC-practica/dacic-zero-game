@@ -18,9 +18,6 @@ namespace DacicZero.UI {
         
         [Tooltip("dialog container")]
         [SerializeField] private GameObject pnl_Dialog;
-        
-        [Tooltip("weapon upgrade interface")]
-        [SerializeField] private GameObject pnl_WeaponUpgrade;
 
 
         private PlayerController.PlayerMovementController _playerMove;
@@ -49,7 +46,6 @@ namespace DacicZero.UI {
             if (Input.GetButtonDown("Cancel")) {
                 if (_contextMenu != null && _contextMenu.gameObject.activeSelf) _contextMenu.Close(); // closes contextmenu without closing missionselector
                 else if (pnl_MissionOverlay != null && pnl_MissionOverlay.activeSelf) ShowMissionSelector();
-                else if (pnl_WeaponUpgrade != null && pnl_WeaponUpgrade.activeSelf) ReturnToRoom();
                 else if (pnl_Dialog != null && pnl_Dialog.activeSelf) return;
                 else if (pnl_MissionSelector != null && pnl_MissionSelector.activeSelf) 
                     EventBus<UI.MissionSelector.MapStateChangedEvent>.Raise(0, new UI.MissionSelector.MapStateChangedEvent(false));
@@ -61,7 +57,6 @@ namespace DacicZero.UI {
         /// <summary> returns to room if no other menu is active after dialog ends </summary>
         private void OnEndDialog(UI.Dialog.EndDialogEvent evt) {
             if (pnl_MissionSelector != null && pnl_MissionSelector.activeSelf) return;
-            if (pnl_WeaponUpgrade != null && pnl_WeaponUpgrade.activeSelf) return;
             ReturnToRoom();
         }
         
@@ -73,16 +68,13 @@ namespace DacicZero.UI {
         
         /// <summary> executes specific actions requested by dialog options </summary>
         private void OnDialogAction(UI.Dialog.DialogActionFiredEvent evt) {
-            if (string.Equals(evt.ActionID, "OpenUpgradeMenu", System.StringComparison.OrdinalIgnoreCase)) 
-                ShowWeaponUpgrade();
-            else if (string.Equals(evt.ActionID, "OpenMap", System.StringComparison.OrdinalIgnoreCase)) 
+            if (string.Equals(evt.ActionID, "OpenMap", System.StringComparison.OrdinalIgnoreCase)) 
                 EventBus<UI.MissionSelector.MapStateChangedEvent>.Raise(0, new UI.MissionSelector.MapStateChangedEvent(true));
         }
 
         public void ShowMissionSelector() => SwitchMenu(pnl_MissionSelector, false);
         public void ShowMissionOverlay() => SwitchMenu(pnl_MissionOverlay, false);
         public void ShowDialog() => SwitchMenu(pnl_Dialog, false, true);
-        public void ShowWeaponUpgrade() => SwitchMenu(pnl_WeaponUpgrade, false);
         public void ReturnToRoom() => SwitchMenu(pnl_Room, true);
         
         /// <summary> centralizes ui state transitions </summary>
@@ -95,7 +87,6 @@ namespace DacicZero.UI {
             if (pnl_MissionSelector != null && pnl_MissionSelector != targetPanel) pnl_MissionSelector.SetActive(false);
             if (pnl_MissionOverlay != null && pnl_MissionOverlay != targetPanel) pnl_MissionOverlay.SetActive(false);
             if (pnl_Dialog != null && pnl_Dialog != targetPanel) pnl_Dialog.SetActive(false);
-            if (pnl_WeaponUpgrade != null && pnl_WeaponUpgrade != targetPanel) pnl_WeaponUpgrade.SetActive(false);
         }
 
         /// <summary> toggles player input components </summary>

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using EventBus;
 
 public class BackgroundMusicPlayer : MonoBehaviour
 {
@@ -15,10 +16,22 @@ public class BackgroundMusicPlayer : MonoBehaviour
 
     private void Awake()
     {
-        GameObject tempMusicPlayer = new GameObject("MusicPlayer");
+        GameObject tempMusicPlayer = new GameObject("BackgroundMusicPlayer");
         tempMusicPlayer.transform.SetParent(transform);
         musicSource = tempMusicPlayer.AddComponent<AudioSource>();
         ConfigAudioSource();
+    }
+
+    private void OnEnable()
+    {
+        EventBus<PauseSound>.AddActions(gameObject.GetInstanceID(), actionNoArgs: StopMusic);
+        EventBus<UnpauseSound>.AddActions(gameObject.GetInstanceID(), actionNoArgs: PlayMusic);
+    }
+
+    private void OnDisable()
+    {
+        EventBus<PauseSound>.RemoveActions(gameObject.GetInstanceID(), actionNoArgs: StopMusic);
+        EventBus<UnpauseSound>.RemoveActions(gameObject.GetInstanceID(), actionNoArgs: PlayMusic);
     }
 
     private void Start()
@@ -54,7 +67,6 @@ public class BackgroundMusicPlayer : MonoBehaviour
             fadeInCoroutine = null;
         }
         fadeOutCoroutine = StartCoroutine(FadeSoundOut());
-        musicSource.Stop();
     }
 
     private IEnumerator FadeSoundIn()
@@ -84,6 +96,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
             yield return null;
         }
         musicSource.volume = 0f;
+        musicSource.Stop();
         fadeOutCoroutine = null;
     }
 }

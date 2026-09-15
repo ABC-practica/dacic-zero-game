@@ -30,18 +30,12 @@ namespace DacicZero.Data {
         [Tooltip("do not save runtime player progress in ScriptableObjects")]
         [SerializeField] private bool _isCleared;
 
-        [Header("Rewards")]
-        [Tooltip("scrap material awarded upon completion")]
-        [Min(0)] // prevents negative rewards
-        [SerializeField] private int _scrapReward;
-
         public string MissionId => _missionId;
         public string MissionTitle => _missionTitle;
         public string MissionDescription => _missionDescription;
         public Sprite MissionImage => _missionImage;
         public string SceneName => _sceneName;
         public int SceneBuildIndex => _sceneBuildIndex;
-        public int ScrapReward => _scrapReward;
 
         public bool IsCleared {
             get => _isCleared;
