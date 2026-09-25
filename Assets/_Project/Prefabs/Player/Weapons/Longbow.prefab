@@ -209,12 +209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.LongBow
   Damage: 2
-  fireCooldown: 2
+  fireCooldown: 1
   altFireCooldown: 1
   <Firing>k__BackingField: 0
   <AltFiring>k__BackingField: 0
   <IsEnhanced>k__BackingField: 0
-  WeaponSprite: {fileID: 0}
+  WeaponSprite: {fileID: 2800000, guid: 78652a886e2da04408ff0506ab6bbd14, type: 3}
   cooldownTo: -1
   projectile: {fileID: 3828718443384397336, guid: 768e04c6db2aaea47a540174ecf69776, type: 3}
   projectileVelocity: 0

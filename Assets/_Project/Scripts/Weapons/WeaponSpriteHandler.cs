@@ -1,5 +1,6 @@
 using HP;
 using PlayerController;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Weapons;
@@ -11,6 +12,7 @@ public class WeaponSpriteHandler : MonoBehaviour
     [SerializeField] RawImage ImageBackground;
     [SerializeField] Slider ChargeSlider;
     [SerializeField] Image ChargeSliderFill;
+    [SerializeField] private GameObject ArrowCount;
 
 
     private void Awake()
@@ -37,12 +39,28 @@ public class WeaponSpriteHandler : MonoBehaviour
         {
             Image.color = new Color(0, 0, 0, 0); // invis when theres no sprite, tho this shouldnt be the case in the final version.
             ImageBackground.color = new Color(0, 0, 0, 0);
+            if (ArrowCount != null) ArrowCount.SetActive(false);
+        }
+        else if(sprite.GetType() == typeof(Bow))
+        {
+            Image.texture = weapon.WeaponSprite;
+            Image.color = Color.white;
+            ImageBackground.color = new Color(0, 0, 0, 0.5f);
+            if (ArrowCount != null)
+            {
+                // show and sync the arrow count
+                ArrowCount.SetActive(true);
+                var bow = weapon as Bow;
+                if (bow != null && bow.Arrows != null)
+                    ArrowCount.GetComponent<TMP_Text>().text = bow.Arrows.GetComponent<TMP_Text>().text;
+            }
         }
         else
         {
             Image.texture = weapon.WeaponSprite;
             Image.color = Color.white;
             ImageBackground.color = new Color(0, 0, 0, 0.5f);
+            if (ArrowCount != null) ArrowCount.SetActive(false);
         }
     }
 

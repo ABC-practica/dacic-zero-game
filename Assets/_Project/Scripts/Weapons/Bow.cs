@@ -1,5 +1,6 @@
 using Animancer;
 using EventBus;
+using TMPro;
 using UnityEngine;
 
 namespace Weapons
@@ -13,6 +14,11 @@ namespace Weapons
         [SerializeField] protected AnimationClip clip;
         [SerializeField] protected int ammo = 10;
 
+        public TMP_Text Arrows;
+        public void SetAmmo(int ammo)
+        {
+            this.ammo = ammo;
+        }
         protected AnimancerComponent animancer;
 
         protected const float MaxCharge = 100f;
@@ -109,6 +115,7 @@ namespace Weapons
             cooldownTo = Time.time + fireCooldown;
             ShootArrow(currentCharge);
             ammo -= AmmoUsed;
+            Arrows.text = ammo.ToString();
         }
 
         protected override void AltFire()
@@ -124,6 +131,7 @@ namespace Weapons
             ShootArrow(currentCharge, -SideArrowYawOffset);
 
             ammo -= AmmoUsed;
+            Arrows.text = ammo.ToString();
         }
 
         /// <summary>

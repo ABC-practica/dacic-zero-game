@@ -143,6 +143,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8629466349362021416
 GameObject:
@@ -205,9 +206,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0144da8b8ca53c143a67e2a375be2027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons.Bow
+  Damage: 2
   fireCooldown: 1
   altFireCooldown: 2
+  <Firing>k__BackingField: 0
+  <AltFiring>k__BackingField: 0
+  <IsEnhanced>k__BackingField: 0
+  WeaponSprite: {fileID: 0}
+  cooldownTo: -1
   projectile: {fileID: 3828718443384397336, guid: 768e04c6db2aaea47a540174ecf69776, type: 3}
   projectileVelocity: 50
   clip: {fileID: 7400000, guid: 6ffc3fee10117ca43b524b4439eb840b, type: 2}
-  chargeTime: 0.7
+  ammo: 10
+  arrows: {fileID: 0}
+  chargeTime: 0.72
