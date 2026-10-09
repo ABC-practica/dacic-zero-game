@@ -20,13 +20,14 @@ namespace Weapons
         }
 
         protected override void Fire()
-        {
+        {   
             animancer.Play(clip).Time = 0;
             cooldownTo = Time.time + fireCooldown;
             if (!IsEnhanced)
             {
                 ShootArrow(currentCharge);
                 ammo -= 1;
+                Arrows.text = ammo.ToString();
             }
             else
             {
@@ -35,6 +36,7 @@ namespace Weapons
                 ShootArrow(currentCharge, ArrowSpread);
                 ShootArrow(currentCharge, (-1) * ArrowSpread);
                 ammo -= 1;
+                Arrows.text = ammo.ToString();
             }
         }
 

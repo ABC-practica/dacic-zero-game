@@ -26,6 +26,15 @@ namespace HP {
         public void TakeDamage(TakeDamage dmg) {
             CurrentHealth -= dmg.Damage;
             if (CurrentHealth <= 0) {
+                // If the player died, also reset the player's bow ammo
+                if (GetComponent<PlayerController.PlayerMovementController>() != null)
+                {
+                    var bow = FindFirstObjectByType<Weapons.Bow>();
+                    if (bow != null) { 
+                        bow.SetAmmo(10);
+                        bow.Arrows.text = "10";
+                    }
+                }
                 OnDeath?.Invoke();
                 return;
             }
